@@ -1,0 +1,26 @@
+<!doctype>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>Alcoolorama | Vente d'alcool en ligne</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/http-vue-loader/src/httpVueLoader.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue-router/dist/vue-router.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    </head>
+    <body>
+        <div id="app">
+          <header>
+            <h1>Alcoolorama</h1>
+            <nav>
+              <router-link to='/'>Accueil</router-link>
+            </nav>
+          </header>
+          <main>
+            <router-view
+            ></router-view>
+          </main>
+        </div>
+        <script src="/vue-application.js"></script>
+    </body>
+</html>
