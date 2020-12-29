@@ -10,17 +10,37 @@
     </head>
     <body>
         <div id="app">
-          <header>
+          <header class="header">
             <h1>Alcoolorama</h1>
-            <nav>
+            <nav class="navigation">
               <router-link to='/'>Accueil</router-link>
+              <router-link to='/produit'>Produit</router-link>
+              <router-link to='/apropos'>A propos</router-link>
+              <router-link to='/contact'>Contact</router-link>
+              <router-link to='/register'>Connexion/inscription</router-link>
+              <router-link to='/panier'>Panier</router-link>
+              <router-link to='/favproduit'>Produit favoris</router-link> 
             </nav>
           </header>
           <main>
             <router-view
+                @login-information = "login"
+                @register-information = "register"
             ></router-view>
           </main>
         </div>
         <script src="/vue-application.js"></script>
     </body>
 </html>
+
+<style>
+  .header{
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+
+  .navigation{
+    color: black;
+  }
+</style>
