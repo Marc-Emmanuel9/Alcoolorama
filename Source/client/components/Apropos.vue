@@ -29,3 +29,16 @@
          </p>
     </div>
 </template>
+
+<style scoped>
+    .body{
+    margin-top: 2%;
+    padding: 1%;
+    box-shadow: 2px 2px 8px black;
+    background-color: white;
+  }
+
+  p{
+      text-align: justify;
+  }
+</style>

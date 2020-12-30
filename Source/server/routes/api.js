@@ -8,7 +8,7 @@ class Panier {
     this.articles = []
   }
 }
-
+/*
 const bcrypt = require('bcrypt')
 const { Client } = require('pg')
 
@@ -81,5 +81,5 @@ router.post('/login', async (req, res) => {
   }
 
 })
-
+*/
 module.exports = router

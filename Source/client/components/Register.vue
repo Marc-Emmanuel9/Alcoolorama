@@ -1,5 +1,17 @@
 <template>
     <div class = "body">
+      <div class="second">
+            <h2>Pas encore inscrit ?</h2>
+            <form action="POST" @submit.prevent="register">
+                <input type="text" v-model="user_register.username" placeholder="Nom d'utilisateur">
+                <input type="text" v-model="user_register.mail" placeholder="Adresse mail">
+                <input type="text" v-model="user_register.password" placeholder="Mot de passe">
+                <input type="text" v-model="user_register.telephone"  placeholder="Numero de telephone">
+                <textarea v-model="user_register.addr_livr" placeholder="Adresse de livraison"></textarea>
+                <textarea v-model="user_register.addr_fact" placeholder="Adresse de facturation"></textarea>
+                <button type="submit">Inscription</button>
+            </form>
+        </div>
         <div class="first">
             <h2>Connexion</h2>
             <form action="POST" @submit.prevent="login">
@@ -8,19 +20,6 @@
                 <button type="submit">Connexion</button>
             </form>
         </div>
-        <div class="second">
-            <h2>Pas encore inscrit ?</h2>
-            <form action="POST" @submit.prevent="register">
-                <input type="text" v-model="user_register.username" placeholder="Nom d'utilisateur">
-                <input type="text" v-model="user_register.mail" placeholder="Adresse mail">
-                <input type="text" v-model="user_register.password" placeholder="Mot de passe">
-                <input type="text" v-model="user_register.telephone"  placeholder="Numero de telephone">
-                <textarea v-model="user_register.addr_livr" placeholder="Adresse de livraison"/>
-                <textarea v-model="user_register.addr_fact" placeholder="Adresse de facturation"/>
-                <button type="submit">Inscription</button>
-            </form>
-        </div>
-
     </div>
 </template>
 
@@ -54,3 +53,22 @@ module.exports = {
   }
 };
 </script>
+
+<style scoped>
+  .body{
+    margin-top: 2%;
+    box-shadow: 2px 2px 8px black;
+    background-color: white;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+</style>
