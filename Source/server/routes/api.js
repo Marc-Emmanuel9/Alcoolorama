@@ -8,15 +8,15 @@ class Panier {
     this.articles = []
   }
 }
-/*
+
 const bcrypt = require('bcrypt')
 const { Client } = require('pg')
 
 const client = new Client({
- user: 'postgres',
- host: 'localhost',
- password: 'admin',
- database: 'TP5'
+  user: 'postgres',
+  host: 'localhost',
+  password: 'admin',
+  database: 'Alcoolorama'
 })
 
 client.connect()
@@ -29,13 +29,12 @@ router.post('/register', async (req, res) => {
   const addr_livr = req.body.addr_livr
   const addr_fact = req.body.addr_fact
 
-  const selectUserPerEmail = 'SELECT * FROM users WHERE email=$1'
+  const selectUserPerEmail = 'SELECT * FROM Clients WHERE email=$1'
 
   const result = await client.query({
     text: selectUserPerEmail,
     values: [email]
   })
-
 
   if (result.rows.length != 0) {
     res.status(400).json({ message: 'User already exist' })
@@ -44,7 +43,7 @@ router.post('/register', async (req, res) => {
 
   const hash = await bcrypt.hash(password, 10)
   console.log(hash)
-  const insertIntoTP5 = 'INSERT INTO users (username, mail, password, telephone, addresse_livraison, addresse_facturation) \
+  const insertIntoTP5 = 'INSERT INTO Clients (username, mail, password, telephone, addresse_livraison, addresse_facturation) \
         VALUES ($1, $2, $3, $4, $5, $6)'
 
   await client.query({
@@ -58,7 +57,7 @@ router.post('/login', async (req, res) => {
   const email = req.body.email
   const password = req.body.password
 
-  const selectUserPerEmail = 'SELECT * FROM users WHERE email=$1'
+  const selectUserPerEmail = 'SELECT * FROM Clients WHERE email=$1'
 
   const result = await client.query({
     text: selectUserPerEmail,
@@ -81,5 +80,24 @@ router.post('/login', async (req, res) => {
   }
 
 })
-*/
+
+router.get('/articles', async (req, res) => {
+  const articles = "SELECT * FROM Produit"
+
+  const result = await client.query({
+    text: articles,
+  })
+
+  return result
+})
+
+router.get('/favproduit', async (req, res) => {
+  const articles = "SELECT * FROM Famous_Product"
+
+  const result = await client.query({
+    text: articles,
+  })
+
+  return result
+})
 module.exports = router

@@ -32,13 +32,15 @@
 
 <style scoped>
     .body{
-    margin-top: 2%;
+    height: 65%;
+    border-radius: 10px;
     padding: 1%;
     box-shadow: 2px 2px 8px black;
     background-color: white;
   }
 
   p{
+      height: 70%;
       text-align: justify;
   }
 </style>

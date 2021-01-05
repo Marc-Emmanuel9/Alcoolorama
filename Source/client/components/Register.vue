@@ -56,7 +56,8 @@ module.exports = {
 
 <style scoped>
   .body{
-    margin-top: 2%;
+    height: 70%;
+    border-radius: 10px;
     box-shadow: 2px 2px 8px black;
     background-color: white;
     display: flex;

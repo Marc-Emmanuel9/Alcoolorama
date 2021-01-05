@@ -24,8 +24,17 @@ var app = new Vue({
   router,
   el: '#app',
   data: {
+    articles: [],
+    Famous_Product: [],
+    isConnected: false,
+    session_id: null
   },
   async mounted () {
+    const res = await axios.get('/api/articles')
+    this.articles = res.data
+
+    const res2 = await axios.get('/api/favproduit')
+    this.Famous_Product = res2.data
   },
   methods: {
     async register(information){
