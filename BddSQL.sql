@@ -18,7 +18,7 @@ CREATE TABLE public."Produit"
 (
     id serial,
     nom text NOT NULL,
-    prix text NOT NULL,
+    prix integer NOT NULL,
     caracteristique text NOT NULL,
     type_alcool text NOT NULL,
     PRIMARY KEY (id)
@@ -27,11 +27,22 @@ CREATE TABLE public."Produit"
 ALTER TABLE public."Produit"
     OWNER to postgres;
 
-CREATE TABLE public.favorite_article
+CREATE TABLE public.Favorite_article
 (
     user_id integer NOT NULL,
     produit_id integer NOT NULL
 );
 
-ALTER TABLE public.favorite_article
+ALTER TABLE public.Favorite_article
+    OWNER to postgres;
+    
+CREATE TABLE public."Famous_Product"
+(
+    id serial,
+    product_id integer,
+    nb_purchase integer,
+    PRIMARY KEY (id)
+);
+
+ALTER TABLE public."Famous_Product"
     OWNER to postgres;
