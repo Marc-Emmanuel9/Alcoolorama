@@ -14,7 +14,6 @@
             <h1>Alcoolorama</h1>
             <nav class="navigation">
               <router-link to='/'>Accueil</router-link>
-              <router-link to='/produit'>Produit</router-link>
               <router-link to='/apropos'>A propos</router-link>
               <router-link to='/contact'>Contact</router-link>
               <router-link to='/register'>Connexion/inscription</router-link>
@@ -26,13 +25,13 @@
             <router-view
                 @login-information = "login"
                 @register-information = "register"
+                @makePurchase = "makePurchase"
             ></router-view>
           </main>
 
           <footer class="footer">
             <nav class="navigation2">
               <router-link to='/'>Accueil</router-link>
-              <router-link to='/produit'>Produit</router-link>
               <router-link to='/apropos'>A propos</router-link>
               <router-link to='/contact'>Contact</router-link>
               <router-link to='/register'>Connexion/inscription</router-link>

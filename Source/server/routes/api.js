@@ -1,14 +1,6 @@
 const express = require('express')
 const router = express.Router()
 
-class Panier {
-  constructor () {
-    this.createdAt = new Date()
-    this.updatedAt = new Date()
-    this.articles = []
-  }
-}
-
 const bcrypt = require('bcrypt')
 const { Client } = require('pg')
 
@@ -43,7 +35,7 @@ router.post('/register', async (req, res) => {
 
   const hash = await bcrypt.hash(password, 10)
   console.log(hash)
-  const insertIntoTP5 = 'INSERT INTO Clients (username, mail, password, telephone, addresse_livraison, addresse_facturation) \
+  const insertIntoTP5 = 'INSERT INTO Clients (username, mail, password, numero, addresse_livraison, addresse_facturation) \
         VALUES ($1, $2, $3, $4, $5, $6)'
 
   await client.query({
@@ -81,6 +73,21 @@ router.post('/login', async (req, res) => {
 
 })
 
+router.post('/makePurchase', async (req, res) => {
+  const idProduit = req.body.idProduit
+
+  if(!req.session.userId){
+    res.status(401).json({ message: 'No user connected' })
+    return
+  }else{
+    const addToFavProduct = 'INSERT INTO Favorite_article (user_id, produit_id) VALUES ($1, $2)'
+    await client.query({
+      text: addToFavProduct,
+      values: [req.session.userId, idProduit]
+    })
+  }
+})
+
 router.get('/articles', async (req, res) => {
   const articles = "SELECT * FROM Produit"
 
@@ -88,16 +95,16 @@ router.get('/articles', async (req, res) => {
     text: articles,
   })
 
-  return result
+  res.json(result.rows)
 })
 
 router.get('/favproduit', async (req, res) => {
-  const articles = "SELECT * FROM Famous_Product"
+  const articles = "SELECT * FROM Favorite_article"
 
   const result = await client.query({
     text: articles,
   })
 
-  return result
+  res.json(result.rows)
 })
 module.exports = router

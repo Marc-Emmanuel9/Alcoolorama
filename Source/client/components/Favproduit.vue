@@ -2,7 +2,12 @@
     <div class="body">
 
         <div class="productAfficheur">
-
+            <article v-for="article in getListArticle()" :key="article.id">
+                  <img src=article.image>
+                  <p>{{article.prix}} €</p>
+                  <p>{{article.caracteristique}}</p>
+                  <button @click="makePurchase(article.id)" >Commander</button>
+            </article>
         </div>
 
     </div>
@@ -34,6 +39,10 @@ module.exports = {
         }
 
         return list
+    },
+    makePurchase(information) {
+      alert("Votre produit à été commandé !");
+      this.$emit("makePurchase", information);
     }
   }
 };
