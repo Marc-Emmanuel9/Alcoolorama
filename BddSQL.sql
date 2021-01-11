@@ -1,7 +1,7 @@
 CREATE TABLE "Clients"
 (
     id serial,
-    nom_utilisateur text NOT NULL,
+    username text NOT NULL,
     mail text NOT NULL,
     password text NOT NULL,
     numero text NOT NULL,
