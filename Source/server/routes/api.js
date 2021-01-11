@@ -127,8 +127,15 @@ router.get('/favproduit', async (req, res) => {
   const result = await client.query({
     text: articles,
   })
+
+  let tempList = []
+  for(let i = 0; i < result.rows.length; i++){
+    if(!tempList.includes(result.rows[i])){
+      tempList.push(result.rows[i])
+    }
+  }
   
-  res.json(result.rows)
+  res.json(tempList)
 })
 
 module.exports = router

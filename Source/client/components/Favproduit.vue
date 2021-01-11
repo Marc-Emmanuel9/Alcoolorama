@@ -1,6 +1,7 @@
 <template>
     <div class="body">
         <div class="productAfficheur">
+          <button @click="getFamousProduct">Actualiser</button>
           <div v-for="(article,i) in famous_product" :key="i">
             <article v-if="session_id != null">
                   <img v-if="session_id == article.user_id" height="50" :src=article.image>
@@ -14,7 +15,6 @@
             </div>
           </div>
         </div>
-
     </div>
 </template>
 
@@ -32,6 +32,10 @@ module.exports = {
     makePurchase(information) {
       alert("Votre produit à été commandé !");
       this.$emit("make-purchase", information);
+    },
+    getFamousProduct(information) {
+      alert("Page de produit favoris actualisé");
+      this.$emit("get-famous-product");
     }
   }
 };

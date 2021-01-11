@@ -6,6 +6,7 @@
             <input type="text" placeholder="Prénom">
             <input type="text" placeholder="Numéro de téléphone">
             <textarea  placeholder="Message"></textarea>
+            <button type="submit">Contacter</button>
         </div>
 
         <div class="second">

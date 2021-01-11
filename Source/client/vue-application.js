@@ -51,6 +51,10 @@ var app = new Vue({
       await axios.post('/api/makePurchase/', {
         idProduit: information
       })
+    },
+    async getFamousProduct(){
+      const res2 = await axios.get('/api/favproduit')
+      this.Famous_Product = res2.data
     }
   }
 })
