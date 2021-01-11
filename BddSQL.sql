@@ -1,7 +1,7 @@
-CREATE TABLE public."Clients"
+CREATE TABLE "Clients"
 (
     id serial,
-    nom_utilisateur text NOT NULL,
+    username text NOT NULL,
     mail text NOT NULL,
     password text NOT NULL,
     numero text NOT NULL,
@@ -10,11 +10,11 @@ CREATE TABLE public."Clients"
     PRIMARY KEY (id)
 );
 
-ALTER TABLE public."Clients"
+ALTER TABLE "Clients"
     OWNER to postgres;
 
 
-CREATE TABLE public."Produit"
+CREATE TABLE "Produit"
 (
     id serial,
     nom text NOT NULL,
@@ -25,7 +25,7 @@ CREATE TABLE public."Produit"
     PRIMARY KEY (id)
 );
 
-INSERT INTO public."Produit" (nom,prix,caracteristique,type_alcool, image)
+INSERT INTO "Produit" (nom,prix,caracteristique,type_alcool, image)
 VALUES
 ('Delirium Red',2.80,'carac','Blonde, Fruité','https://cdn.shopify.com/s/files/1/0273/2412/1182/products/Delirium-Red_2048x2048.jpg?v=1595353377'),
 ('Floris Fraise',1.70,'carac','Fruité','https://cdn.webshopapp.com/shops/19852/files/303419664/650x750x2/floris-fraise.jpg'),
@@ -64,14 +64,14 @@ VALUES
 ('Gose IPA du Barachois',3.50,'carac','Gose, IPA','https://alimentsduquebec.com/files/20180119/bouteille-goseipadubarachois_1516382910.jpg')
 ;
 
-ALTER TABLE public."Produit"
+ALTER TABLE "Produit"
     OWNER to postgres;
 
-CREATE TABLE public.Favorite_article
+CREATE TABLE "Favorite_article"
 (
     user_id integer NOT NULL,
     produit_id integer NOT NULL
 );
 
-ALTER TABLE public.Favorite_article
+ALTER TABLE "Favorite_article"
     OWNER to postgres;
