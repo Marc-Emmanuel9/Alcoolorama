@@ -16,21 +16,19 @@
               <router-link to='/'>Accueil</router-link>
               <router-link to='/apropos'>A propos</router-link>
               <router-link to='/contact'>Contact</router-link>
-              <router-link to='/register'>Connexion/inscription</router-link>
-              <router-link to='/panier'>Panier</router-link>
-              <router-link to='/favproduit'>Produit favoris</router-link> 
+              <router-link v-if="session_id == null" to='/register'>Connexion/inscription</router-link>
+              <router-link v-if="session_id != null" to='/favproduit'>Produit favoris</router-link> 
             </nav>
           </header>
           <main>
             <router-view
                 :articles="articles"
-                :Famous_Product = "Famous_Product"
+                :famous_product = "Famous_Product"
                 :session_id = "session_id"
-                :isConnected = "isConnected"
                 :message = "message"
                 @login-information = "login"
                 @register-information = "register"
-                @makePurchase = "makePurchase"
+                @make-purchase = "makePurchase"
             ></router-view>
           </main>
 
@@ -39,9 +37,8 @@
               <router-link to='/'>Accueil</router-link>
               <router-link to='/apropos'>A propos</router-link>
               <router-link to='/contact'>Contact</router-link>
-              <router-link to='/register'>Connexion/inscription</router-link>
-              <router-link to='/panier'>Panier</router-link>
-              <router-link to='/favproduit'>Produit favoris</router-link> 
+              <router-link v-if="session_id == null" to='/register'>Connexion/inscription</router-link>
+              <router-link v-if="session_id != null" to='/favproduit'>Produit favoris</router-link> 
             </nav>
           </footer>
         </div>
@@ -67,7 +64,6 @@
     display: flex;
     border-radius: 10px;
     align-items: center;
-    justify-content: space-between;
   }
 
   .footer{
@@ -83,5 +79,9 @@
   .navigation2{
     display: flex;
     align-items: center;
+  }
+
+  @media screen and (max-width: 640px){
+
   }
 </style>

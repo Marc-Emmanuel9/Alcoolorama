@@ -1,12 +1,18 @@
 <template>
     <div class="body">
         <div class="productAfficheur">
-            <article v-for="(article,i) in getListArticle()" :key="i">
-                  <img :src=article.image>
-                  <p>{{article.prix}} €</p>
-                  <p>{{article.caracteristique}}</p>
-                  <button @click="makePurchase(article.id)" >Commander</button>
+          <div v-for="(article,i) in famous_product" :key="i">
+            <article v-if="session_id != null">
+                  <img v-if="session_id == article.user_id" height="50" :src=article.image>
+                  <p v-if="session_id == article.user_id">{{article.nom}}</p>
+                  <p v-if="session_id == article.user_id">{{article.prix}} €</p>
+                  <p v-if="session_id == article.user_id">{{article.caracteristique}}</p>
+                  <button @click="makePurchase(article.id)" v-if="session_id == article.user_id">Commander</button>
             </article>
+            <div v-else>
+                <p>test</p>
+            </div>
+          </div>
         </div>
 
     </div>
@@ -15,8 +21,7 @@
 <script>
 module.exports = {
   props: {
-    Famous_Product: { type: Array},
-    isConnected: { type: Boolean},
+    famous_product: { type: Array},
     session_id: { type: Number}
   },
   data () {
@@ -24,24 +29,9 @@ module.exports = {
     };
   },
   methods: {
-    getListArticle(){
-        let list = []
-
-        if(!isConnected){
-            return []
-        }
-
-        for(let i = 0; i < Famous_Product.length; i++){
-            if(Famous_Product[i].id == session_id){
-                list.push(Famous_Product[i])
-            }
-        }
-
-        return list
-    },
     makePurchase(information) {
       alert("Votre produit à été commandé !");
-      this.$emit("makePurchase", information);
+      this.$emit("make-purchase", information);
     }
   }
 };

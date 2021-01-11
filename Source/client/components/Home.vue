@@ -2,10 +2,12 @@
     <div class="body">
         <div class="productAfficheur">
             <article v-for="(article,i) in articles" :key="i">
+                  <p>{{i+1}}</p>
                   <img height="50" :src=article.image>
+                  <p>{{article.nom}}</p>
                   <p>{{article.prix}} €</p>
                   <p>{{article.caracteristique}}</p>
-                  <button @click="makePurchase(article.id)">Commander</button>
+                  <button @click="makePurchase(i+1)">Commander</button>
             </article>
         </div>
     </div>
@@ -18,15 +20,12 @@ module.exports = {
   },
   data () {
     return {
-      information: {
-        idProduit: null
-      }
     };
   },
   methods: {
     makePurchase(information) {
       alert("Votre produit à été commandé et vous sera livré !");
-      this.$emit("makePurchase", information);
+      this.$emit("make-purchase", information);
     }
   }
 };

@@ -24,7 +24,6 @@ var app = new Vue({
   data: {
     articles: [],
     Famous_Product: [],
-    isConnected: null,
     session_id: null,
     message: null
   },
@@ -42,12 +41,16 @@ var app = new Vue({
     async login(information){
       const res = await axios.post('/api/login/', information)
       this.session_id = res.data.session_id
-      this.isConnected = res.data.isConnected
       this.message = res.data.message
+
+      if(this.session_id != null){
+        router.push('/')
+      }
     },
     async makePurchase(information){
-      console.log(information)
-      await axios.post('/api/makePurchase/', information)
+      await axios.post('/api/makePurchase/', {
+        idProduit: information
+      })
     }
   }
 })

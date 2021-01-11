@@ -62,14 +62,12 @@ router.post('/login', async (req, res) => {
         req.session.userId = result.rows[0].id
         res.json({
           session_id: req.session.userId,
-          isConnected: true,
           message: "Vous êtes connecté"
         })
 
     }else{
       res.json({
         session_id: req.session.userId,
-        isConnected: false,
         message: "Bad password"
       })
       return
@@ -77,7 +75,6 @@ router.post('/login', async (req, res) => {
   }else{
     res.json({
       session_id: req.session.userId,
-      isConnected: false,
       message: "User does not exist"
     })
     return
@@ -89,21 +86,33 @@ router.post('/login', async (req, res) => {
 
 router.post('/makePurchase', async (req, res) => {
   const idProduit = req.body.idProduit
-
+  console.log(req.body)
   if(!req.session.userId){
     res.status(401).json({ message: 'No user connected' })
     return
   }else{
+    const articles = 'SELECT * FROM public."Favorite_article"'
+
+    const result = await client.query({
+      text: articles,
+    })
+
+    result.rows.forEach(element =>{
+      if(element.user_id == req.session.userId && element.produit_id == idProduit) 
+        return
+    })
+
     const addToFavProduct = 'INSERT INTO public."Favorite_article" (user_id, produit_id) VALUES ($1, $2)'
     await client.query({
       text: addToFavProduct,
       values: [req.session.userId, idProduit]
     })
+    
   }
 })
 
 router.get('/articles', async (req, res) => {
-  const articles = 'SELECT * FROM public."Produit"'
+  const articles = 'SELECT image, prix, caracteristique, nom  FROM public."Produit"'
 
   const result = await client.query({
     text: articles,
@@ -113,12 +122,12 @@ router.get('/articles', async (req, res) => {
 })
 
 router.get('/favproduit', async (req, res) => {
-  const articles = 'SELECT * FROM public."Favorite_article"'
+  const articles = 'SELECT * FROM public."Favorite_article" JOIN public."Produit" ON produit_id = id'
 
   const result = await client.query({
     text: articles,
   })
-
+  
   res.json(result.rows)
 })
 

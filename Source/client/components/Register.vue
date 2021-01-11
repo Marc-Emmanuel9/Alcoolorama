@@ -1,6 +1,5 @@
 <template>
     <div class = "body">
-      <p>{{message}}</p>
       <div class="second">
             <h2>Pas encore inscrit ?</h2>
             <form action="POST" @submit.prevent="register">
@@ -53,7 +52,6 @@ module.exports = {
     },
 
     register() {
-      alert(message)
       this.$emit("register-information", this.user_register);
     }
   }
