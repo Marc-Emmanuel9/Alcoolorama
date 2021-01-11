@@ -23,6 +23,11 @@
           </header>
           <main>
             <router-view
+                :articles="articles"
+                :Famous_Product = "Famous_Product"
+                :session_id = "session_id"
+                :isConnected = "isConnected"
+                :message = "message"
                 @login-information = "login"
                 @register-information = "register"
                 @makePurchase = "makePurchase"

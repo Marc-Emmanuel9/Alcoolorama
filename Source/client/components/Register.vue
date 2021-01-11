@@ -1,5 +1,6 @@
 <template>
     <div class = "body">
+      <p>{{message}}</p>
       <div class="second">
             <h2>Pas encore inscrit ?</h2>
             <form action="POST" @submit.prevent="register">
@@ -25,7 +26,11 @@
 
 <script>
 module.exports = {
+   props: {
+      message: {type: String}
+    },
   data () {
+   
     return {
        user_login: {
         username: null,
@@ -48,6 +53,7 @@ module.exports = {
     },
 
     register() {
+      alert(message)
       this.$emit("register-information", this.user_register);
     }
   }
